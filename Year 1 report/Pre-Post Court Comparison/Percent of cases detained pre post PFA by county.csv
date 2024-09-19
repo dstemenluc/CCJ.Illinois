@@ -1,20 +1,23 @@
-﻿County,Pre-PFA All Cases (Bond/Detained at Initial Hearing),Post-PFA All Cases (Detained at Initial Hearing),Pre-PFA Detainable Cases (Bond/Detained at Initial Hearing),Post-PFA Detainable Cases (Detained at Initial Hearing)
-Boone County,51%,7%,70%,35%
-Carroll County,41%,7%,35%,27%
-Edwards County,46%,13%,80%,54%
-Franklin County,53%,10%,91%,40%
-Fulton County,52%,8%,76%,25%
-Hancock County,48%,6%,76%,29%
-Henderson County,41%,3%,100%,13%
-Jefferson County,49%,8%,97%,43%
-Knox County,39%,8%,91%,28%
-Lawrence County,36%,14%,67%,51%
-Livingston County,40%,7%,75%,41%
-Logan County,20%,9%,85%,34%
-Ogle County,32%,6%,71%,31%
-Richland County,47%,12%,48%,29%
-Stephenson County,51%,10%,75%,40%
-Warren County,44%,4%,83%,19%
-Wayne County,54%,8%,91%,33%
-White County,70%,11%,87%,32%
-Cook County,70%,6%,85%,16%
+﻿County,Pre All ROR,Pre All Detained,Pre All Total,Pre-PFA All Cases (Bond/Detained at Initial Hearing),Pre All Release 7,Pre All Detained 7,Pre All 7,Pre-PFA All Cases (Detained more than 7 Days),Post All ROR,Post All Detained,Post All Total,Post-PFA All Cases (Detained at Initial Hearing),Pre Detainable ROR,Pre Detainable Detained,Pre Detainable Total,Pre-PFA Detainable Cases (Bond/Detained at Initial Hearing),Post Detainable ROR,Post Detainable Detained,Post Detainable Total,Post-PFA Detainable Cases (Detained at Initial Hearing)
+"Boone County, IL",477,579,1056,55%,835,221,1056,21%,1172,108,1280,8%,41,95,136,70%,102,56,158,35%
+"Carroll County, IL",155,124,279,44%,192,87,279,31%,254,23,277,8%,34,18,52,35%,36,13,49,27%
+"Cook County, IL",13352,34629,47981,72%,41470,6511,47981,14%,40170,2760,42930,6%,2456,14968,17424,86%,12228,2405,14633,16%
+"Edwards County, IL",48,50,98,51%,63,35,98,36%,110,19,129,15%,4,16,20,80%,12,14,26,54%
+"Ford County, IL",86,127,213,60%,147,66,213,31%,256,7,263,3%,14,41,55,75%,41,4,45,9%
+"Franklin County, IL",548,721,1269,57%,830,439,1269,35%,1407,165,1572,10%,18,185,203,91%,160,106,266,40%
+"Fulton County, IL",277,347,624,56%,493,131,624,21%,710,70,780,9%,32,101,133,76%,121,40,161,25%
+"Hancock County, IL",100,98,198,49%,172,26,198,13%,343,24,367,7%,8,26,34,76%,40,16,56,29%
+"Henderson County, IL",88,88,176,50%,121,55,176,31%,217,7,224,3%,0,15,15,100%,26,4,30,13%
+"Jefferson County, IL",362,507,869,58%,510,359,869,41%,975,98,1073,9%,3,113,116,97%,82,63,145,43%
+"Jo Daviess County, IL",448,104,552,19%,451,101,552,18%,450,9,459,2%,25,27,52,52%,49,8,57,14%
+"Knox County, IL",773,649,1422,46%,993,429,1422,30%,1678,166,1844,9%,24,255,279,91%,264,102,366,28%
+"Lawrence County, IL",198,131,329,40%,220,109,329,33%,346,59,405,15%,22,45,67,67%,44,46,90,51%
+"Livingston County, IL",501,438,939,47%,736,203,939,22%,981,90,1071,8%,39,120,159,75%,104,74,178,42%
+"Logan County, IL",475,155,630,25%,523,107,630,17%,532,64,596,11%,14,81,95,85%,74,38,112,34%
+"McDonough County, IL",228,373,601,62%,430,171,601,28%,525,98,623,16%,7,76,83,92%,29,82,111,74%
+"Ogle County, IL",691,404,1095,37%,894,201,1095,18%,1199,84,1283,7%,23,57,80,71%,98,44,142,31%
+"Richland County, IL",257,245,502,49%,420,82,502,16%,553,78,631,12%,46,43,89,48%,82,33,115,29%
+"Stephenson County, IL",431,616,1047,59%,745,302,1047,29%,1095,156,1251,12%,55,164,219,75%,150,101,251,40%
+"Warren County, IL",164,162,326,50%,214,112,326,34%,378,21,399,5%,16,77,93,83%,74,17,91,19%
+"Wayne County, IL",134,202,336,60%,212,124,336,37%,372,39,411,9%,6,58,64,91%,53,26,79,33%
+"White County, IL",101,279,380,73%,241,139,380,37%,408,58,466,12%,9,62,71,87%,68,32,100,32%
