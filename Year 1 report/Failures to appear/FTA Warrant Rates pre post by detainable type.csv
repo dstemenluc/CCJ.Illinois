@@ -1,5 +1,6 @@
-﻿Offense Type,Pre-PFA,Post-PFA
-Non-Detainable Misdemeanors,17.3%,13.9%
-Non-Detainable Felonies,12.9%,16.9%
-Detainable Offenses,6.7%,6.5%
-All Offenses,13.6%,12.5%
+﻿Offense Type,Pre-PFA,Post-PFA,,
+Non-Detainable Misdemeanors,17.3%,13.9%,,
+Non-Detainable Felonies,12.9%,16.9%,,
+Detainable Misdemeanors,6.3%,4.9%,,
+Detainable Felonies,7.6%,9.5%,,
+All Offenses,13.6%,12.5%,,
