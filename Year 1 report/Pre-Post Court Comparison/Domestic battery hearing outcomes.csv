@@ -1,4 +1,4 @@
-﻿Offense Type,Pre-PFA (Bond/Detained at Initial Hearing),Post-PFA (Detained at Initial Hearing),Pre-PFA Detained more than 3 days,Post-PFA Detained more than 3 days
-F2 Aggravated Domestic Batttery,90.53%,54.55%,51.48%,47.88%
-F3 Aggravated Battery,76.45%,24.75%,37.79%,12.98%
-F4 Unlawful Restraint,87.50%,25.00%,37.50%,25.00%
+﻿Offense Type,Pre-PFA (Bond/Detained at Initial Hearing),Post-PFA (Detained at Initial Hearing),Pre-PFA Detained more than 3 days,Post-PFA Detained more than 3 days,Pre-PFA Median Bail Amount
+F2 Aggravated Domestic Batttery,90.53%,54.55%,51.48%,47.88%,"7,500"
+F3 Aggravated Battery,76.45%,24.75%,37.79%,12.98%,"2,500"
+F4 Unlawful Restraint,87.50%,25.00%,37.50%,25.00%,"6,250"
