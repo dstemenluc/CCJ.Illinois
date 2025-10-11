@@ -1,2 +1,8 @@
-﻿Year,Differences in Detainable Cases Filed,Differences in Detainable Cases Petitioned,Differences in Detainable Petitions Granted
-Total,66,1463,117
+﻿Year,Total Detainable Cases Filed,Total Detainable Cases Petitioned,Total Detainable Cases Detained,Percent of Detainable Cases Petitioned,Percent of Detainable Petitions Detained,Percent of Detainable Cases Detained,Estimated Detainable Cases Filed,Differences in Detainable Cases Filed,Estmated Detainable Cases Petitioned,Differences in Detainable Cases Petitioned,Estimated Detainable Petitions Granted,Differences in Detainable Petitions Granted,Detainable Cases Detained 2023Q3 - 2024Q3 Rate,Difference in Detainable Cases Detained,Difference in Cases Detained Due to Cases Filed,Difference in Cases Detained Due to Cases Petitioned,Difference in Cases Detained Due to Successful Petitions
+2023 Q4,4787,1424,851,29.74723209,59.76123596,17.77731356,,,,,,,,,,,
+2024 Q1,5055,1457,872,28.82294758,59.8490048,17.25024728,,,,,,,,,,,
+2024 Q2,5392,1488,930,27.59643917,62.5,17.24777448,5392,,,,,,,,,,
+2024 Q3,5687,1680,980,29.54105855,58.33333333,17.23228416,5312,,1680,,980,,980,,,,
+2024 Q4,4992,1892,1053,37.90064103,55.65539112,21.09375,4787,205,1444,448,1137,-84,867,186,43.2421875,249.3361522,-84
+2025 Q1,5021,2316,1435,46.12626967,61.96027634,28.57996415,5055,-34,1452,864,1392,43,872,563,-9.717187811,535.3367876,43
+2025 Q2,5287,2326,1556,43.99470399,66.89595873,29.43067902,5392,-105,1529,797,1398,158,918,638,-30.90221297,533.1607911,158
