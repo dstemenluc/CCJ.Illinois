@@ -37,51 +37,32 @@ for folder_name in os.listdir(parent_dir):
                 case_last_update = case.get('LastUpdateDate')
 
                 for actor in case.findall('Actor'):
-                    for count in actor.findall('.//Count'):
-                        for charge in count.findall('Charge'):
-                            offense_type = charge.get('OffenseType')
-                            charge_number = charge.get('Number')
-                            description = charge.get('Description')
-                            description = charge.get('Description')
+                    actor_id = actor.get('ID')
+                    actor_role = actor.get('Role')
 
-                for actor in case.findall('Actor'):
-                    for count in actor.findall('.//Count'):
-                        for charge in count.findall('Charge'):
-                            for disposition in charge.findall('CriminalDisposition'):
-                            disposition_description = disposition.get('Description')
+                    identity = actor.find('Identity')
+                    if identity is not None:
+                        full_name = identity.get('FullName')
+                        gender = identity.get('Gender')
+                        ethnicity = identity.get('Ethnicity')
+                        dob = identity.get('DateOfBirth')
+                    else:
+                        full_name = gender = ethnicity = dob = None
 
-                            # Handle Sentences (can be multiple)
-                            sentences = disposition.findall('Sentence'):
-                            for sentence in sentences:
-                                sentence_description = sentence.attrib.get('Description')
-
-                                # Get sentence length if it exists
-                                length_elem = sentence.find('SentenceLength')
-                                if length_elem is not None:
-                                    years = length_elem.attrib.get('Years', '0')
-                                    months = length_elem.attrib.get('Months', '0')
-                                    days = length_elem.attrib.get('Days', '0')
-                                    hours = length_elem.attrib.get('Hours', '0')
-
-                                    length_str = f"{years}y {months}m {days}d {hours}h"
-                                else:
-                                    length_str = sentence.attrib.get('LengthText', '')
-
-                            # Add basic case/actor info
-                            record = {
-                                'county': court_name,
-                                'court_ncic': court_ncic,
-                                'case_number': case_number,
-                                'case_last_update': case_last_update,
-                                'actor_id': actor_id,
-                                'actor_role': actor_role,
-                                'fullname': fullname,
-                                'gender': gender,
-                                'ethnicity': ethnicity,
-                                'dob': dob,
-                                **arrest_data
-                            }
-                            records.append(record)
+                # Just capture basic actor info (no litigant/arrest data)
+                record = {
+                'county': court_name,
+                'court_ncic': court_ncic,
+                'case_number': case_number,
+                'case_last_update': case_last_update,
+                'actor_id': actor_id,
+                'actor_role': actor_role,
+                'fullname': full_name,
+                'gender': gender,
+                'ethnicity': ethnicity,
+                'dob': dob
+            }
+            records.append(record)
 
         except Exception as e:
             print(f"⚠️ Error parsing {xml_path}: {e}")

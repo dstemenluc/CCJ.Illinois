@@ -54,6 +54,14 @@ for folder_name in os.listdir(parent_dir):
                             charge_status = charge.get('Status')
                             charge_statute = charge.get('StatuteReference')
                             charge_type = charge.get('Type')  
+                            
+                            
+                            # fixed name charge_type = charge.get('Type')
+                            for disposition in charge.findall('CriminalDisposition'):
+                                dispo_code = disposition.get('Code')
+                                dispo_description = disposition.get('Description')
+                                dispo_number = disposition.get('Number')
+                                dispo_date = disposition.get('Qualifier')
 
             record = {
                 'county': court_name,
@@ -71,7 +79,10 @@ for folder_name in os.listdir(parent_dir):
                 'charge_status': charge_status,
                 'charge_statute': charge_statute,
                 'charge_type': charge_type,
-                
+                'dispo_code': dispo_code,
+                'dispo_description': dispo_description,
+                'dispo_number': dispo_number,
+                'dispo_date': dispo_date
             }
             records.append(record)
 
@@ -82,7 +93,7 @@ for folder_name in os.listdir(parent_dir):
     # Save per-county CSV
     if records:
         df = pd.DataFrame(records)
-        output_csv = os.path.join(parent_dir, f"{folder_name}.charge.csv")
+        output_csv = os.path.join(parent_dir, f"{folder_name}.dispo.csv")
         df.to_csv(output_csv, index=False)
         print(f"✅ Saved CSV for '{folder_name}' with {len(records)} records.")
     else:
@@ -91,7 +102,7 @@ for folder_name in os.listdir(parent_dir):
 # --- Combine all CSVs into one master file ---
 all_data = []
 for file in os.listdir(parent_dir):
-    if file.endswith('charge.csv') and not file.startswith('charge_all_counties'):
+    if file.endswith('dispo.csv') and not file.startswith('dispo_all_counties'):
         csv_path = os.path.join(parent_dir, file)
         try:
             df = pd.read_csv(csv_path)
@@ -102,7 +113,7 @@ for file in os.listdir(parent_dir):
 
 if all_data:
     master_df = pd.concat(all_data, ignore_index=True)
-    master_csv = os.path.join(parent_dir, "charge_all_counties.csv")
+    master_csv = os.path.join(parent_dir, "dispo_all_counties.csv")
     master_df.to_csv(master_csv, index=False)
     print(f"\n🎉 Master CSV saved: {master_csv} ({len(master_df)} total records)")
 else:
