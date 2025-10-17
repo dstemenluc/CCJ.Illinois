@@ -28,7 +28,6 @@ for folder_name in os.listdir(parent_dir):
                 continue
 
             court_name = court.get('Name')
-            court_ncic = court.get('NCIC')
 
             for case in court.findall('Case'):
                 case_number = case.get('Number')
@@ -38,11 +37,10 @@ for folder_name in os.listdir(parent_dir):
                     entry_text = entry.get('Text')
 
                     records.append({
-                        'county': court_name,
-                        'court_ncic': court_ncic,
                         'case_number': case_number,
-                        'entry_date': entry_date,
-                        'entry_text': entry_text
+                        'county': court_name,
+                        'entry_text': entry_text,
+                        'entry_date': entry_date
                     })
 
         except Exception as e:
@@ -51,28 +49,28 @@ for folder_name in os.listdir(parent_dir):
     # Save per-county CSV
     if records:
         df = pd.DataFrame(records)
-        output_csv = os.path.join(parent_dir, f"{folder_name}.entries.csv")
+        output_csv = os.path.join(parent_dir, f"entry_{folder_name}.csv")
         df.to_csv(output_csv, index=False)
         print(f"✅ Saved entry CSV for '{folder_name}' with {len(records)} records.")
     else:
         print(f"⚠️ No entry data found in '{folder_name}'.")
 
 # --- Combine all entry CSVs into one master file ---
-all_data = []
-for file in os.listdir(parent_dir):
-    if file.endswith('.entries.csv') and not file.startswith('entries_all_counties'):
-        csv_path = os.path.join(parent_dir, file)
-        try:
-            df = pd.read_csv(csv_path)
-            all_data.append(df)
-            print(f"✅ Loaded {file} ({len(df)} rows)")
-        except Exception as e:
-            print(f"⚠️ Skipped {file}: {e}")
+#all_data = []
+#for file in os.listdir(parent_dir):
+#    if file.endswith('.entries.csv') and not file.startswith('entries_all_counties'):
+#        csv_path = os.path.join(parent_dir, file)
+#        try:
+#            df = pd.read_csv(csv_path)
+#            all_data.append(df)
+#            print(f"✅ Loaded {file} ({len(df)} rows)")
+#        except Exception as e:
+#            print(f"⚠️ Skipped {file}: {e}")
 
-if all_data:
-    master_df = pd.concat(all_data, ignore_index=True)
-    master_csv = os.path.join(parent_dir, "entries_all_counties.csv")
-    master_df.to_csv(master_csv, index=False)
-    print(f"\n🎉 Master entry CSV saved: {master_csv} ({len(master_df)} total records)")
-else:
-    print("🚫 No entry data found in any CSV files. Master CSV not created.")
+#if all_data:
+#    master_df = pd.concat(all_data, ignore_index=True)
+#    master_csv = os.path.join(parent_dir, "entries_all_counties.csv")
+#    master_df.to_csv(master_csv, index=False)
+#    print(f"\n🎉 Master entry CSV saved: {master_csv} ({len(master_df)} total records)")
+#else:
+#    print("🚫 No entry data found in any CSV files. Master CSV not created.")
