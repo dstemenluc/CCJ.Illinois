@@ -34,7 +34,6 @@ for folder_name in os.listdir(parent_dir):
 
             for case in court.findall('Case'):
                 case_number = case.get('Number')
-                case_last_update = case.get('LastUpdateDate')
 
                 for actor in case.findall('Actor'):
                     litigant_details = actor.find('LitigantDetails')
@@ -43,17 +42,17 @@ for folder_name in os.listdir(parent_dir):
 
                     for count in litigant_details.findall('Count'):
                         charge_count = count.get('Number')
-                        offense_date = count.get('OffenseDate')
+                        charge_offense_date = count.get('OffenseDate')
                         for charge in count.findall('Charge'):
-                            offense_type = charge.get('OffenseType')
-                            charge_class = charge.get('Class')
-                            charge_code = charge.get('Code')
-                            charge_number = charge.get('Number')
-                            charge_description = charge.get('Description')
-                            charge_qualifier = charge.get('Qualifier')
-                            charge_status = charge.get('Status')
-                            charge_statute = charge.get('StatuteReference')
-                            charge_type = charge.get('Type')  
+                            chargeOffenseType = charge.get('OffenseType')
+                            chargeClass = charge.get('Class')
+                            chargeCode = charge.get('Code')
+                            chargeNumber = charge.get('Number')
+                            chargeDescription = charge.get('Description')
+                            chargeQualifier = charge.get('Qualifier')
+                            chargeStatus = charge.get('Status')
+                            chargeStatuteReference = charge.get('StatuteReference')
+                            chargeType = charge.get('Type')  
                             
                             
                             # fixed name charge_type = charge.get('Type')
@@ -64,21 +63,19 @@ for folder_name in os.listdir(parent_dir):
                                 dispo_date = disposition.get('Qualifier')
 
             record = {
-                'county': court_name,
-                'court_ncic': court_ncic,
                 'case_number': case_number,
-                'case_last_update': case_last_update,
+                'county': court_name,
                 'charge_count': charge_count,
-                'offense_date': offense_date,
-                'offense_type': offense_type,
-                'charge_class': charge_class,
-                'charge_code': charge_code,
-                'charge_number': charge_number,
-                'charge_description': charge_description,
-                'charge_qualifier': charge_qualifier,
-                'charge_status': charge_status,
-                'charge_statute': charge_statute,
-                'charge_type': charge_type,
+                'charge_offense_date': charge_offense_date,
+                'chargeType': chargeType,
+                'chargeOffenseType': chargeOffenseType,
+                'chargeNumber': chargeNumber,
+                'chargeStatus': chargeStatus,
+                'chargeCode': chargeCode,
+                'chargeDescription': chargeDescription,
+                'chargeQualifier': chargeQualifier,
+                'chargeStatuteReference': chargeStatuteReference,
+                'chargeClass': chargeClass,
                 'dispo_code': dispo_code,
                 'dispo_description': dispo_description,
                 'dispo_number': dispo_number,
