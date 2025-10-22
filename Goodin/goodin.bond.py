@@ -23,47 +23,32 @@ for folder_name in os.listdir(parent_dir):
             tree = ET.parse(xml_path)
             root = tree.getroot()
 
-            # Basic provider + court info
             provider = root.find('Provider')
             court = root.find('Court')
             if court is None:
                 continue
 
             court_name = court.get('Name')
-            court_ncic = court.get('NCIC')
 
             for case in court.findall('Case'):
                 case_number = case.get('Number')
-                case_last_update = case.get('LastUpdateDate')
 
                 for actor in case.findall('Actor'):
-                    actor_id = actor.get('ID')
-                    actor_role = actor.get('Role')
+                    for litigant_details in actor.findall('LitigantDetails'):
+                        for payment in litigant_details.findall('Payment'):
+                            amount_paid = payment.get('Amount')
+                            bond_payment_date = payment.get('ReceivedDate')
+                            bond_type = payment.get('TransactionType')
+                            bond_code = payment.get('TransactionTypeCode')
 
-                    # Each ArrestData entry
-                    litigant = actor.find('LitigantDetails')
-                    if litigant is not None:
-                        for arrest in litigant.findall('ArrestData'):
-                            arrest_data = {
-                                'arrest_date': arrest.get('ArrestDate'),
-                                'arresting_officer': arrest.get('ArrestingOfficer'),
-                                'violation_type': arrest.get('ViolationType'),
-                                'action_type': arrest.get('ActionType'),
-                                'comment': arrest.get('Comment'),
-                                'bond_type': arrest.get('CashBondType'),
-                                'bond_amount': arrest.get('BondAmount'),
-                                'user_date': arrest.get('UserDate'),
-                            }
-
-                            # Add basic case/actor info
                             record = {
-                                'county': court_name,
-                                'court_ncic': court_ncic,
                                 'case_number': case_number,
-                                'case_last_update': case_last_update,
-                                'actor_id': actor_id,
-                                'actor_role': actor_role,
-                                **arrest_data
+                                'county': court_name,
+                                'amount_paid': float(amount_paid) if amount_paid else None,
+                                'bond_payment_date': bond_payment_date,
+                                'bond_type': bond_type,
+                                'bond_code': bond_code,
+                                'source_file': file
                             }
                             records.append(record)
 
@@ -73,16 +58,16 @@ for folder_name in os.listdir(parent_dir):
     # Save per-county CSV
     if records:
         df = pd.DataFrame(records)
-        output_csv = os.path.join(parent_dir, f"{folder_name}.arrest.csv")
+        output_csv = os.path.join(parent_dir, f"{folder_name}.payment.csv")
         df.to_csv(output_csv, index=False)
         print(f"✅ Saved CSV for '{folder_name}' with {len(records)} records.")
     else:
-        print(f"⚠️ No data found in '{folder_name}'.")
+        print(f"⚠️ No payment data found in '{folder_name}'.")
 
 # --- Combine all CSVs into one master file ---
 all_data = []
 for file in os.listdir(parent_dir):
-    if file.endswith('arrest.csv') and not file.startswith('arrest_all_counties'):
+    if file.endswith('payment.csv') and not file.startswith('payment_all_counties'):
         csv_path = os.path.join(parent_dir, file)
         try:
             df = pd.read_csv(csv_path)
@@ -93,8 +78,9 @@ for file in os.listdir(parent_dir):
 
 if all_data:
     master_df = pd.concat(all_data, ignore_index=True)
-    master_csv = os.path.join(parent_dir, "arrest_all_counties.csv")
+    master_csv = os.path.join(parent_dir, "payment_all_counties.csv")
     master_df.to_csv(master_csv, index=False)
     print(f"\n🎉 Master CSV saved: {master_csv} ({len(master_df)} total records)")
 else:
     print("🚫 No data found in any CSV files. Master CSV not created.")
+

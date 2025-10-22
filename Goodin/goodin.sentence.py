@@ -28,11 +28,9 @@ for folder_name in os.listdir(parent_dir):
                 continue
 
             court_name = court.get('Name')
-            court_ncic = court.get('NCIC')
 
             for case in court.findall('Case'):
                 case_number = case.get('Number')
-                case_last_update = case.get('LastUpdateDate')
 
                 for actor in case.findall('Actor'):
                     litigant_details = actor.find('LitigantDetails')
@@ -57,7 +55,7 @@ for folder_name in os.listdir(parent_dir):
                                     sentence_code = sentence.get('Code')
                                     sentence_status_code = sentence.get('StatusCode')
                                     sentence_status_desc = sentence.get('StatusDescription')
-
+                                    sentence_length = sentence.get('LengthText')
                                     length = sentence.find('SentenceLength')
                                     sentence_years = length.get('Years') if length is not None else ''
                                     sentence_months = length.get('Months') if length is not None else ''
@@ -65,20 +63,14 @@ for folder_name in os.listdir(parent_dir):
 
                                     record = {
                                         'county': court_name,
-                                        'court_ncic': court_ncic,
                                         'case_number': case_number,
-                                        'case_last_update': case_last_update,
                                         'charge_count': charge_count,
-                                        'offense_date': offense_date,
-                                        'charge_code': charge_code,
-                                        'charge_description': charge_description,
-                                        'disposition_code': dispo_code,
-                                        'disposition_description': dispo_description,
                                         'sentence_number': sentence_number,
-                                        'sentence_description': sentence_description,
+                                        'sentenceDescription': sentence_description,
+                                        'sentence_length': sentence_length,
                                         'sentence_code': sentence_code,
-                                        'sentence_status_code': sentence_status_code,
-                                        'sentence_status_desc': sentence_status_desc,
+                                        'sentenceStatusCode': sentence_status_code,
+                                        'sentenceStatusDescription': sentence_status_desc,
                                         'sentence_length_years': sentence_years,
                                         'sentence_length_months': sentence_months,
                                         'sentence_length_days': sentence_days
