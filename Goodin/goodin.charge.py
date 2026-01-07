@@ -23,53 +23,45 @@ for folder_name in os.listdir(parent_dir):
             tree = ET.parse(xml_path)
             root = tree.getroot()
 
-            # Basic provider + court info
-            provider = root.find('Provider')
+            # Get provider and court info
             court = root.find('Court')
             if court is None:
                 continue
 
-            court_name = court.get('Name')
+            court_name = court.get('Name', '')
 
+            # Iterate through cases
             for case in court.findall('Case'):
-                case_number = case.get('Number')
+                case_number = case.get('Number', '')
 
                 for actor in case.findall('Actor'):
                     litigant_details = actor.find('LitigantDetails')
                     if litigant_details is None:
                         continue
 
+                    # Iterate through all counts
                     for count in litigant_details.findall('Count'):
-                        charge_count = count.get('Number')
-                        charge_offense_date = count.get('OffenseDate')
+                        charge_count = count.get('Number', '')
+                        charge_offense_date = count.get('OffenseDate', '')
+
+                        # Iterate through all charges within each count
                         for charge in count.findall('Charge'):
-                            chargeOffenseType = charge.get('OffenseType')
-                            chargeClass = charge.get('Class')
-                            chargeCode = charge.get('Code')
-                            chargeNumber = charge.get('Number')
-                            chargeDescription = charge.get('Description')
-                            chargeQualifier = charge.get('Qualifier')
-                            chargeStatus = charge.get('Status')
-                            chargeStatuteReference = charge.get('StatuteReference')
-                            chargeType = charge.get('Type')  
-
-            record = {
-                'case_number': case_number,
-                'county': court_name,
-                'charge_count': charge_count,
-                'charge_offense_date': charge_offense_date,
-                'chargeType': chargeType,
-                'chargeOffenseType': chargeOffenseType,
-                'chargeNumber': chargeNumber,
-                'chargeStatus': chargeStatus,
-                'chargeCode': chargeCode,
-                'chargeDescription': chargeDescription,
-                'chargeQualifier': chargeQualifier,
-                'chargeStatuteReference': chargeStatuteReference,
-                'chargeClass': chargeClass
-            }
-            records.append(record)
-
+                            record = {
+                                'case_number': case_number,
+                                'county': court_name,
+                                'charge_count': charge_count,
+                                'charge_offense_date': charge_offense_date,
+                                'chargeType': charge.get('Type', ''),
+                                'chargeOffenseType': charge.get('OffenseType', ''),
+                                'chargeNumber': charge.get('Number', ''),
+                                'chargeStatus': charge.get('Status', ''),
+                                'chargeCode': charge.get('Code', ''),
+                                'chargeDescription': charge.get('Description', ''),
+                                'chargeQualifier': charge.get('Qualifier', ''),
+                                'chargeStatuteReference': charge.get('StatuteReference', ''),
+                                'chargeClass': charge.get('Class', ''),
+                            }
+                            records.append(record)
 
         except Exception as e:
             print(f"⚠️ Error parsing {xml_path}: {e}")

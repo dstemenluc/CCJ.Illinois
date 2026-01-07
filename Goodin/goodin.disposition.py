@@ -44,49 +44,32 @@ for folder_name in os.listdir(parent_dir):
                         charge_count = count.get('Number')
                         charge_offense_date = count.get('OffenseDate')
                         for charge in count.findall('Charge'):
-                            chargeOffenseType = charge.get('OffenseType')
-                            chargeClass = charge.get('Class')
-                            chargeCode = charge.get('Code')
-                            chargeNumber = charge.get('Number')
-                            chargeDescription = charge.get('Description')
-                            chargeQualifier = charge.get('Qualifier')
-                            chargeStatus = charge.get('Status')
-                            chargeStatuteReference = charge.get('StatuteReference')
-                            chargeType = charge.get('Type')  
                             
-                            
-                            # fixed name charge_type = charge.get('Type')
-                            for disposition in charge.findall('CriminalDisposition'):
+
+                            # Only proceed if there’s at least one CriminalDisposition
+                            dispositions = charge.findall('CriminalDisposition')
+                            if not dispositions:
+                                continue 
+
+                            for disposition in dispositions:
                                 dispo_code = disposition.get('Code')
                                 dispo_description = disposition.get('Description')
                                 dispo_number = disposition.get('Number')
                                 dispo_date = disposition.get('Qualifier')
 
-            record = {
-                'case_number': case_number,
-                'county': court_name,
-                'charge_count': charge_count,
-                'charge_offense_date': charge_offense_date,
-                'chargeType': chargeType,
-                'chargeOffenseType': chargeOffenseType,
-                'chargeNumber': chargeNumber,
-                'chargeStatus': chargeStatus,
-                'chargeCode': chargeCode,
-                'chargeDescription': chargeDescription,
-                'chargeQualifier': chargeQualifier,
-                'chargeStatuteReference': chargeStatuteReference,
-                'chargeClass': chargeClass,
-                'dispo_code': dispo_code,
-                'dispo_description': dispo_description,
-                'dispo_number': dispo_number,
-                'dispo_date': dispo_date
-            }
-            records.append(record)
-
+                                record = {
+                                    'case_number': case_number,
+                                    'county': court_name,
+                                    'charge_count': charge_count,
+                                    'dispo_code': dispo_code,
+                                    'dispo_description': dispo_description,
+                                    'dispo_number': dispo_number,
+                                    'dispo_date': dispo_date
+                                }
+                                records.append(record)
 
         except Exception as e:
             print(f"⚠️ Error parsing {xml_path}: {e}")
-
     # Save per-county CSV
     if records:
         df = pd.DataFrame(records)

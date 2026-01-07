@@ -49,7 +49,11 @@ for folder_name in os.listdir(parent_dir):
                                 dispo_code = disposition.get('Code')
                                 dispo_description = disposition.get('Description')
 
-                                for sentence in disposition.findall('Sentence'):
+                                sentences = disposition.findall('Sentence')
+                                if not sentences:
+                                    continue
+
+                                for sentence in sentences:
                                     sentence_number = sentence.get('Number')
                                     sentence_description = sentence.get('Description')
                                     sentence_code = sentence.get('Code')
