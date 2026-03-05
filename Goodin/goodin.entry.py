@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 
 # Set the parent directory containing county folders
-parent_dir = '/Users/donstemen/Desktop/LoyolaPreTrial_20250917-1040'
+parent_dir = '/Users/donstemen/Library/CloudStorage/Dropbox/LoyolaPreTrial_20251028-1243'
 
 # Loop through each county folder
 for folder_name in os.listdir(parent_dir):
